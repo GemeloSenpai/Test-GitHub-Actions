@@ -40,7 +40,7 @@ jobs: # Que tiene que ejecutar esta CI/CD, pipeline o workflow
         registry: ghcr.io # Registro de docker
         username: ${{ github.actor }} # Nombre de usuario
         password: ${{ secrets.GITHUB_TOKEN }} # Contraseña
-    - name: Build and push Docker image # Nombre del paso
+    - name: Build and push # Nombre del paso
       uses: docker/build-push-action@v6
       with: # Parametros
         push: true # Empujar la imagen
