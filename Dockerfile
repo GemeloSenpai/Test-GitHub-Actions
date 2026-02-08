@@ -1,5 +1,12 @@
-FROM nginx:1.19-alpine
+FROM python:3.11-slim
 
-ADD index.html /usr/share/nginx/html
+WORKDIR /app
+
+COPY src/requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY src/ .
+
+CMD ["python", "main.py"]
 
 
