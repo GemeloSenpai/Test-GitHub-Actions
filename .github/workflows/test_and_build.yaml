@@ -12,6 +12,7 @@ on: # Nos dice en que eventos se ejecuta el workflow
 
 permissions: # Se definen los permisos
   contents: read # Solo lectura
+  packages: write # Escritura
 
 jobs: # Que tiene que ejecutar esta CI/CD, pipeline o workflow
 
@@ -33,3 +34,16 @@ jobs: # Que tiene que ejecutar esta CI/CD, pipeline o workflow
     - name: Test with pytest # Nombre del paso
       working-directory: src # Directorio de trabajo
       run: pytest test.py # Ejecuta los tests (Ejecuta los tests)
+    - name: Login to Docker Container Registry # Nombre del paso
+      uses: docker/login-action@v3 # Accion para login a docker (Login a docker)
+      with: # Parametros
+        registry: ghcr.io # Registro de docker
+        username: ${{ github.actor }} # Nombre de usuario
+        password: ${{ secrets.GITHUB_TOKEN }} # Contraseña
+    - name: Build and push Docker image # Nombre del paso
+      uses: docker/build-push-action@v6
+      with: # Parametros
+        push: true # Empujar la imagen
+        tags: ghcr.io/GemeloSenpai/Test-GitHub-Actions/actions:latest # Etiquetas de la imagen
+        
+    
