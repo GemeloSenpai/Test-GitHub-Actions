@@ -43,7 +43,7 @@ jobs: # Que tiene que ejecutar esta CI/CD, pipeline o workflow
     - name: Build and push # Nombre del paso
       uses: docker/build-push-action@v6
       with: # Parametros
-        push: true # Empujar la imagen
+        push: true # Empujar la imagen los nombres de repos son en minusculas
         tags: ghcr.io/GemeloSenpai/test-github-actions:latest # Etiquetas de la imagen
         
     
