@@ -44,6 +44,6 @@ jobs: # Que tiene que ejecutar esta CI/CD, pipeline o workflow
       uses: docker/build-push-action@v6
       with: # Parametros
         push: true # Empujar la imagen
-        tags: ghcr.io/GemeloSenpai/Test-GitHub-Actions:latest # Etiquetas de la imagen
+        tags: ghcr.io/GemeloSenpai/test-github-actions:latest # Etiquetas de la imagen
         
     
