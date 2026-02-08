@@ -25,7 +25,8 @@ jobs: # Que tiene que ejecutar esta CI/CD, pipeline o workflow
       with: # Parametros
         python-version: ${{ matrix.python-version }} # Version de python
     - name: Install dependencies # Nombre del paso
-      run: pip install -r src/requirements.txt # Instala las dependencias (Instala las dependencias)
+      working-directory: src # Directorio de trabajo
+      run: pip install -r requirements.txt # Instala las dependencias (Instala las dependencias)
     - name: Test with pytest # Nombre del paso
       working-directory: src # Directorio de trabajo
       run: pytest test.py # Ejecuta los tests (Ejecuta los tests)
