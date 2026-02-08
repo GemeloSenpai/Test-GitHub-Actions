@@ -1,0 +1,31 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Test and build # Nombre del workflow
+
+on: # Nos dice en que eventos se ejecuta el workflow
+  push: # Cuando se hace un push
+    branches: [ "main" ] # En la rama main
+
+  # pull_request: # Cuando se hace un pull request (no se realizara por eso se comenta)
+  #  branches: [ "main" ] # En la rama main
+
+permissions: # Se definen los permisos
+  contents: read # Solo lectura
+
+jobs: # Que tiene que ejecutar esta CI/CD, pipeline o workflow
+
+  test_and_build: # Nombre del job
+    runs-on: ubuntu-latest # En que sistema operativo se ejecuta
+
+    steps: # Pasos 
+    - uses: actions/checkout@v4 # Accion para checkout basico trae el codigo de la rama (Dame el codigo de la rama)
+    - name: Set up Python ${{ matrix.python-version }} # Nombre del paso
+      uses: actions/setup-python@v3 # Accion para setup python instasla lo necesario par ajecutarse (Instala python)
+      with: # Parametros
+        python-version: ${{ matrix.python-version }} # Version de python
+    - name: Install dependencies # Nombre del paso
+      run: pip install -r src/requirements.txt # Instala las dependencias (Instala las dependencias)
+    - name: Test with pytest # Nombre del paso
+      working-directory: src # Directorio de trabajo
+      run: pytest test.py # Ejecuta los tests (Ejecuta los tests)
