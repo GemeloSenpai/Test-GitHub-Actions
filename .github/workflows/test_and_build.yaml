@@ -27,6 +27,9 @@ jobs: # Que tiene que ejecutar esta CI/CD, pipeline o workflow
     - name: Install dependencies # Nombre del paso
       working-directory: src # Directorio de trabajo
       run: pip install -r requirements.txt # Instala las dependencias (Instala las dependencias)
+    - name: Check linting # Nombre del paso
+      working-directory: src # Directorio de trabajo
+      run: ruff check . # Ejecuta los tests (Ejecuta los tests)
     - name: Test with pytest # Nombre del paso
       working-directory: src # Directorio de trabajo
       run: pytest test.py # Ejecuta los tests (Ejecuta los tests)
